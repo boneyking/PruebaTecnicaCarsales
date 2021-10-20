@@ -29,9 +29,9 @@ namespace ApiRickAndMorty
         {
             services.AddControllers();
 
-            services.AddHttpClient("RickAndMortyApi", config =>
+            services.AddHttpClient("ApiRickAndMorty", config =>
             {
-                config.BaseAddress = new Uri(Configuration["Services:RickAndMortyApi"]);
+                config.BaseAddress = new Uri(Configuration["Services:ApiRickAndMorty"]);
             });
 
             services.AddScoped<IPersonajeServicio, PersonajeServicio>();
@@ -56,7 +56,7 @@ namespace ApiRickAndMorty
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Digevo.Ads API V1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "ApiRickAndMorty V1");
             });
 
             app.UseEndpoints(endpoints =>
