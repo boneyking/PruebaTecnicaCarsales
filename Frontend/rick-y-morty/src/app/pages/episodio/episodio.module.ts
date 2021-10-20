@@ -6,7 +6,7 @@ import { ListaPaginadoEpisodioComponent } from './lista-paginado-episodio/lista-
 
 const routes: Routes = [
   {
-    path: 'listado',
+    path: '',
     component: ListaPaginadoEpisodioComponent,
   },
 ];

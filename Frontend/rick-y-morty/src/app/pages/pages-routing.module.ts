@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { EpisodioComponent } from './episodio/episodio.component';
+import { ListaPaginadoEpisodioComponent } from './episodio/lista-paginado-episodio/lista-paginado-episodio.component';
 import { PagesComponent } from './pages.component';
 import { paginas } from './pages.routes.names';
 
 const routes: Routes = [
   {
     path: '',
-    component: EpisodioComponent,
+    component: ListaPaginadoEpisodioComponent,
     children: [
       {
         path: '',
