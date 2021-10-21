@@ -13,13 +13,16 @@ import { PersonajeService } from 'src/app/services/personaje/personaje.service';
   styleUrls: ['./lista-paginado-episodio.component.css'],
 })
 export class ListaPaginadoEpisodioComponent implements OnInit {
-  private episodiosPaginado: TodosLosEpisodiosRespuesta;
+  public episodiosPaginado: TodosLosEpisodiosRespuesta;
   public episodios: Array<Episodio>;
   public episodio: Episodio;
   public paginaActual: number = 1;
 
   public personajes: Array<Personaje>;
   public personaje: Personaje;
+
+  public paginaAnterior: boolean = false;
+  public paginaSiguiente: boolean = false;
 
   constructor(
     private episodioService: EpisodioService,
@@ -49,6 +52,7 @@ export class ListaPaginadoEpisodioComponent implements OnInit {
       .then((respuesta: TodosLosEpisodiosRespuesta) => {
         this.episodiosPaginado = respuesta;
         this.episodios = this.episodiosPaginado.results;
+        this.obtenerEpisodioPorId(this.episodios[0].id);
         this.spinner.hide();
       })
       .catch((e) => {
@@ -62,16 +66,26 @@ export class ListaPaginadoEpisodioComponent implements OnInit {
   }
 
   obtenerEpisodioPorId(id: number): void {
+    this.personajes = new Array<Personaje>();
+    this.personaje = new Personaje();
+    this.episodio = new Episodio();
     this.spinner.show();
     this.episodioService
       .obtenerEpisodioPorId(id)
       .then((episodio: Episodio) => {
         this.episodio = episodio;
         const idsPersonaje = new Array<number>();
+        let contador = 0;
+        let idPrimerPersonaje = 0;
         this.episodio.characters.forEach((x) => {
+          if (contador === 0) {
+            idPrimerPersonaje = Number(x.substring(x.lastIndexOf('/') + 1));
+          }
           idsPersonaje.push(Number(x.substring(x.lastIndexOf('/') + 1)));
+          contador++;
         });
         this.obtenerMultiplesPersonajesPorId(idsPersonaje);
+        this.obtenerPersonajePorId(idPrimerPersonaje);
         this.spinner.hide();
       })
       .catch((e) => {
@@ -114,5 +128,32 @@ export class ListaPaginadoEpisodioComponent implements OnInit {
         );
         this.spinner.hide();
       });
+  }
+
+  cambiarPagina(direccion: string): void {
+    if (direccion === 'izq') {
+      if (this.paginaActual === 1) {
+        this.notificacionesService.mostrarMensaje(
+          'info',
+          'Información',
+          'Se encuentra en la primera página de los episodios'
+        );
+        return;
+      } else {
+        this.paginaActual -= 1;
+      }
+    } else if (direccion === 'der') {
+      if (this.paginaActual === this.episodiosPaginado.info.pages) {
+        this.notificacionesService.mostrarMensaje(
+          'info',
+          'Información',
+          'Se encuentra en la última página de los episodios'
+        );
+        return;
+      } else {
+        this.paginaActual += 1;
+      }
+    }
+    this.obtenerEpisodiosPaginados(this.paginaActual);
   }
 }

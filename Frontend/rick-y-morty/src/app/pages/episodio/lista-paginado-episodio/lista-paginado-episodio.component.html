@@ -1,8 +1,10 @@
 <div class="header">
-  <h1>Episodios Rick y Morty</h1>
+  <h1>Rick y Morty</h1>
 </div>
-<div class="row">
-  <div class="col-3 col-s-3 menu">
+
+<div style="padding: 10px">
+  <div class="box blue">
+    <span class="title">Episodios</span>
     <ul>
       <li *ngFor="let episodioPaginado of episodios">
         <a href="#" (click)="obtenerEpisodioPorId(episodioPaginado.id)">{{
@@ -10,29 +12,66 @@
         }}</a>
       </li>
     </ul>
+    <div>
+      <a href="#" title="Atras" (click)="cambiarPagina('izq')">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          fill="currentColor"
+          class="bi bi-chevron-left"
+          viewBox="0 0 16 16"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"
+          />
+        </svg>
+      </a>
+      Página {{ paginaActual }} de {{ episodiosPaginado.info.pages }}
+      <a href="#" title="Adelante" (click)="cambiarPagina('der')">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          fill="currentColor"
+          class="bi bi-chevron-right"
+          viewBox="0 0 16 16"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"
+          />
+        </svg>
+      </a>
+    </div>
   </div>
-  <div class="col-3 col-s-3" *ngIf="episodio.id > 0">
-    <h1>{{ episodio.episode + ". " + episodio.name }}</h1>
-    <h4>Emisión: {{ episodio.air_Date }}</h4>
+  <div class="box orange">
+    <span class="title">{{ episodio.episode + " " + episodio.name }}</span>
+    <h5>Emisión</h5>
+    <h3>{{ episodio.air_Date }}</h3>
     <h2>Personajes</h2>
     <ul>
       <li *ngFor="let character of personajes">
-        <a href="#" (click)="obtenerPersonajePorId(character.id)">{{
-          character.name
-        }}</a>
+        <a
+          href="#"
+          (click)="obtenerPersonajePorId(character.id)"
+          title="Detalle personaje"
+          >{{ character.name }}</a
+        >
       </li>
     </ul>
   </div>
-
-  <div class="col-6 col-s-12" *ngIf="personaje.id > 0">
-    <div class="aside">
-      <div>
-        <img [src]="personaje.image" style="width: 100%; height: auto" />
-      </div>
-      <h2>{{ personaje.name }}</h2>
-
-      <h6>Origen: {{ personaje.origin.name }}</h6>
-      <h6>Último avistamiento: {{ personaje.location.name }}</h6>
-    </div>
+  <div class="box green">
+    <span class="title">{{ personaje.name }}</span>
+    <div><img [src]="personaje.image" /></div>
+    <h5>Origen</h5>
+    <h3>{{ personaje.origin.name }}</h3>
+    <h5>Último avistamiento</h5>
+    <h3>{{ personaje.location.name }}</h3>
+    <h5>Estado</h5>
+    <h3>{{ personaje.status }}</h3>
+    <h5>Género</h5>
+    <h3>{{ personaje.gender }}</h3>
   </div>
 </div>
