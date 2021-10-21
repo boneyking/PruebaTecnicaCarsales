@@ -21,8 +21,7 @@ export class ListaPaginadoEpisodioComponent implements OnInit {
   public personajes: Array<Personaje>;
   public personaje: Personaje;
 
-  public paginaAnterior: boolean = false;
-  public paginaSiguiente: boolean = false;
+  public mostrar: boolean = true;
 
   constructor(
     private episodioService: EpisodioService,
@@ -52,10 +51,12 @@ export class ListaPaginadoEpisodioComponent implements OnInit {
       .then((respuesta: TodosLosEpisodiosRespuesta) => {
         this.episodiosPaginado = respuesta;
         this.episodios = this.episodiosPaginado.results;
+        this.mostrar = true;
         this.obtenerEpisodioPorId(this.episodios[0].id);
         this.spinner.hide();
       })
       .catch((e) => {
+        this.mostrar = false;
         this.notificacionesService.mostrarMensaje(
           'error',
           'Error',
@@ -84,11 +85,13 @@ export class ListaPaginadoEpisodioComponent implements OnInit {
           idsPersonaje.push(Number(x.substring(x.lastIndexOf('/') + 1)));
           contador++;
         });
+        this.mostrar = true;
         this.obtenerMultiplesPersonajesPorId(idsPersonaje);
         this.obtenerPersonajePorId(idPrimerPersonaje);
         this.spinner.hide();
       })
       .catch((e) => {
+        this.mostrar = false;
         this.notificacionesService.mostrarMensaje(
           'error',
           'Error',
@@ -103,8 +106,10 @@ export class ListaPaginadoEpisodioComponent implements OnInit {
       .obtenerMultiplesPersonajes(ids)
       .then((characters: Array<Personaje>) => {
         this.personajes = characters;
+        this.mostrar = true;
       })
       .catch((e) => {
+        this.mostrar = false;
         this.notificacionesService.mostrarMensaje(
           'error',
           'Error',
@@ -119,8 +124,10 @@ export class ListaPaginadoEpisodioComponent implements OnInit {
       .obtenerPersonajePorId(id)
       .then((character: Personaje) => {
         this.personaje = character;
+        this.mostrar = true;
       })
       .catch((e) => {
+        this.mostrar = false;
         this.notificacionesService.mostrarMensaje(
           'error',
           'Error',

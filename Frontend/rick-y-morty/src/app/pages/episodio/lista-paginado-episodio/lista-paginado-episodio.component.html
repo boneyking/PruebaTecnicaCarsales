@@ -2,7 +2,7 @@
   <h1>Rick y Morty</h1>
 </div>
 
-<div style="padding: 10px">
+<div style="padding: 10px" *ngIf="mostrar">
   <div class="box blue">
     <span class="title">Episodios</span>
     <ul>
@@ -73,5 +73,10 @@
     <h3>{{ personaje.status }}</h3>
     <h5>Género</h5>
     <h3>{{ personaje.gender }}</h3>
+  </div>
+</div>
+<div style="padding: 10px" *ngIf="!mostrar">
+  <div class="purple">
+    <h1>Hay inconvenientes para obtener información del servidor</h1>
   </div>
 </div>
