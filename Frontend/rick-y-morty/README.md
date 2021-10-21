@@ -1,27 +1,31 @@
-# RickYMorty
+# Ejecución del frontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.0.
+La estructura comprende:
 
-## Development server
+- app/models
+  - Clases que representan los esquemas de las clases del backend. No se utilizo la mayoría de estos, solo los que se iban a utilizar en la prueba.
+- app/pages
+  - Componentes visuales y de funcionamiento para obtener información del backend.
+- app/services
+  - Servicios utilizados para comunicarse con la API del backend.
+- app/utils
+  Funcionalidades que se pueden utilizar en todos los servicios, en este caso la de parametros.
+- environments
+  Valores a utilizar según el ambiente, en este caso se utilizará el de desarrollo.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Ejecución Desarrollo
 
-## Code scaffolding
+Para ejecutar el proyecto, abrir una consola en directorio del front/rick-y-morty y ejecutar.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### `npm install`
 
-## Build
+Con esto se instalaran las dependencias que utiliza el proyecto.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Posteriormente, ejecutar el comando:
 
-## Running unit tests
+### `ng serve -o`
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Esto levantará una instancia local en el puerto 4200 y una ventana o pestaña del navegador.<br />
+Si no se levanta una ventana o pestaña del navegador utilizar esta url [http://localhost:4200](http://localhost:4200) en el navegador.
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Ahora podrá navegar por el sitio para poder ver el funcionamiento.
