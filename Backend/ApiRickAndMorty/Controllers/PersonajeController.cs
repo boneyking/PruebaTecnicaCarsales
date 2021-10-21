@@ -37,8 +37,8 @@ namespace ApiRickAndMorty.Controllers
         }
 
         [HttpGet]
-        [Route("paginado/{pagina}")]
-        public async Task<IActionResult> ObtenerPersonajesPaginado(int pagina = 1)
+        [Route("ObtenerPersonajesPaginado")]
+        public async Task<IActionResult> ObtenerPersonajesPaginado([FromQuery] int pagina = 1)
         {
             try
             {
@@ -53,8 +53,9 @@ namespace ApiRickAndMorty.Controllers
             }
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> ObtenerPersonajePorId(int id)
+        [HttpGet]
+        [Route("ObtenerPersonajePorId")]
+        public async Task<IActionResult> ObtenerPersonajePorId([FromQuery] int id)
         {
             try
             {
@@ -70,7 +71,7 @@ namespace ApiRickAndMorty.Controllers
         }
 
         [HttpGet]
-        [Route("multiple")]
+        [Route("ObtenerMultiplesPersonajesPorId")]
         public async Task<IActionResult> ObtenerMultiplesPersonajesPorId([FromQuery] int[] ids)
         {
             try

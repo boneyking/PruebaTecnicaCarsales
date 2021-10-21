@@ -8,7 +8,7 @@ namespace ApiRickAndMorty.Modelos
     public class Episodio : RickYMorty
     {
         public override string TipoCaptura => nameof(Episodio);
-        public string AirDate { get; set; }
+        public string Air_Date { get; set; }
         public string Episode { get; set; }
         public List<string> Characters { get; set; }
     }

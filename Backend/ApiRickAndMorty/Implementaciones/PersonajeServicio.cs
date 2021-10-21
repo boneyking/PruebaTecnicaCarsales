@@ -26,7 +26,7 @@ namespace ApiRickAndMorty.Implementaciones
         {
             try
             {
-                var cliente = _httpClient.CreateClient("RickAndMortyApi");
+                var cliente = _httpClient.CreateClient("ApiRickAndMorty");
 
                 var idsConcatenados = string.Join(",", ids);
                 
@@ -51,7 +51,7 @@ namespace ApiRickAndMorty.Implementaciones
         {
             try
             {
-                var cliente = _httpClient.CreateClient("RickAndMortyApi");
+                var cliente = _httpClient.CreateClient("ApiRickAndMorty");
                 var respuesta = await cliente.GetAsync($"api/character/{id}");
                 if (!respuesta.IsSuccessStatusCode)
                     return (false, null, respuesta.ReasonPhrase);
@@ -73,7 +73,7 @@ namespace ApiRickAndMorty.Implementaciones
         {
             try
             {
-                var cliente = _httpClient.CreateClient("RickAndMortyApi");
+                var cliente = _httpClient.CreateClient("ApiRickAndMorty");
                 var respuesta = await cliente.GetAsync($"api/character/?page={pagina}");
                 if (!respuesta.IsSuccessStatusCode)
                     return (false, null, respuesta.ReasonPhrase);
@@ -95,7 +95,7 @@ namespace ApiRickAndMorty.Implementaciones
         {
             try
             {
-                var cliente = _httpClient.CreateClient("RickAndMortyApi");
+                var cliente = _httpClient.CreateClient("ApiRickAndMorty");
                 var respuesta = await cliente.GetAsync("api/character");
                 if (!respuesta.IsSuccessStatusCode)
                     return (false, null, respuesta.ReasonPhrase);

@@ -36,8 +36,8 @@ namespace ApiRickAndMorty.Controllers
         }
 
         [HttpGet]
-        [Route("paginado/{pagina}")]
-        public async Task<IActionResult> ObtenerEpisodiosPaginado(int pagina = 1)
+        [Route("ObtenerEpisodiosPaginado")]
+        public async Task<IActionResult> ObtenerEpisodiosPaginado([FromQuery] int pagina = 1)
         {
             try
             {
@@ -52,8 +52,9 @@ namespace ApiRickAndMorty.Controllers
             }
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> ObtenerEpisodioPorId(int id)
+        [HttpGet]
+        [Route("ObtenerEpisodioPorId")]
+        public async Task<IActionResult> ObtenerEpisodioPorId([FromQuery] int id)
         {
             try
             {
@@ -69,7 +70,7 @@ namespace ApiRickAndMorty.Controllers
         }
 
         [HttpGet]
-        [Route("multiple")]
+        [Route("ObtenerMultiplesEpisodiosPorId")]
         public async Task<IActionResult> ObtenerMultiplesEpisodiosPorId([FromQuery] int[] ids)
         {
             try
